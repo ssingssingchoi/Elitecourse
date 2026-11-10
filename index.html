@@ -20,20 +20,21 @@
   --gold: #d9bd7a;
   --brass: #8c6a1c;
   --tint: #efebf4;
+  --panel: rgba(88, 52, 134, 0.12);
   --hl: #f1dfab;  --font-display: "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
   --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #120e18; --paper: #1a1522; --ink: #ede9f3; --muted: #a8a0b6;
-    --line: #2f283a; --brand: #cdb8ec; --brand-ink: #120e18; --brass: #d9bd7a; --tint: #241d2f; --hl: #5c4a1c;
+    --line: #2f283a; --brand: #cdb8ec; --brand-ink: #120e18; --brass: #d9bd7a; --tint: #241d2f; --hl: #5c4a1c; --panel: rgba(205, 184, 236, 0.10);
     --deep: #1e1029; --deep-line: #3e2e52;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #120e18; --paper: #1a1522; --ink: #ede9f3; --muted: #a8a0b6;
-  --line: #2f283a; --brand: #cdb8ec; --brand-ink: #120e18; --brass: #d9bd7a; --tint: #241d2f; --hl: #5c4a1c;
+  --line: #2f283a; --brand: #cdb8ec; --brand-ink: #120e18; --brass: #d9bd7a; --tint: #241d2f; --hl: #5c4a1c; --panel: rgba(205, 184, 236, 0.10);
   --deep: #1e1029; --deep-line: #3e2e52;
   color-scheme: dark;
 }
@@ -104,15 +105,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hero h1 .win { font-style: normal; color: var(--gold); }
 .hero h1 .nb { white-space: nowrap; }
 .hero .lead { margin: 20px 0 0; font-size: 17px; color: var(--deep-muted); max-width: 34em; }
-.hero .who { margin: 32px 0 0; padding-top: 20px; border-top: 1px solid var(--deep-line); display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14.5px; }
-.hero .who strong { font-weight: 600; }
-.hero .who span { color: var(--deep-muted); }
+.about .text .who { margin: 6px 0 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14.5px; line-height: 1.6; }
+.about .text .who span { color: var(--muted); }
 
 .seal { width: 260px; max-width: 100%; height: auto; display: block; justify-self: end; filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.35)); }
 @media (max-width: 820px) { .seal { width: 160px; justify-self: start; grid-row: 1; } }
 
 /* ── 숫자 ── */
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+.stats { margin-top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 @media (max-width: 820px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .stat { padding: 28px 20px 26px 0; display: grid; gap: 4px; align-content: start; }
 .stat + .stat { padding-left: 20px; border-left: 1px solid var(--line); }
@@ -201,10 +201,6 @@ section.block { padding-block: 72px 0; scroll-margin-top: 64px; }
 .foundation .f-d { font-size: 15px; color: var(--deep-muted); max-width: 36em; }
 .foundation .f-d b { color: var(--deep-ink); font-weight: 600; }
 
-.points { margin: 32px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
-@media (max-width: 720px) { .points { grid-template-columns: minmax(0, 1fr); } }
-.points li { padding: 14px 0 14px 24px; border-top: 1px solid var(--line); position: relative; }
-.points li::before { content: ""; position: absolute; left: 2px; top: 25px; width: 8px; height: 8px; border-radius: 50%; background: var(--brass); }
 
 /* 연도별 기록 */
 .ledger { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
@@ -216,43 +212,18 @@ section.block { padding-block: 72px 0; scroll-margin-top: 64px; }
 .ledger td .sub { display: block; font-size: 14px; color: var(--muted); }
 
 /* 합격증 */
-.certs { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.certs { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 @media (max-width: 720px) { .certs { grid-template-columns: minmax(0, 1fr); } }
 .cert { margin: 0; display: grid; gap: 12px; align-content: start; }
-.cert button {
-  display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
-  background: #ffffff; cursor: zoom-in; position: relative;
+.cert img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--line); border-radius: 10px; background: #ffffff;
 }
-.cert button img { display: block; width: 100%; height: auto; transition: transform 0.3s ease; }
-.cert button:hover img { transform: scale(1.02); }
-@media (prefers-reduced-motion: reduce) { .cert button img { transition: none; } }
-.cert button .zoom-hint {
-  position: absolute; right: 12px; bottom: 12px;
-  background: var(--deep); color: var(--deep-ink); font-size: 12.5px; font-weight: 600;
-  padding: 4px 10px; border-radius: 999px;
-}
-.cert figcaption { display: grid; gap: 2px; }
-.cert figcaption b { font-weight: 600; }
-.cert figcaption span { font-size: 14px; color: var(--muted); }
 .certs-note { margin: 14px 0 0; font-size: 13.5px; color: var(--muted); }
 
-.viewer {
-  position: fixed; inset: 0; z-index: 30;
-  background: rgba(14, 8, 20, 0.92);
-  overflow: auto; overscroll-behavior: contain;
-  padding: calc(env(safe-area-inset-top, 0px) + 56px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 24px) max(16px, env(safe-area-inset-left, 0px));
-  display: grid; place-items: start center;
-}
-.viewer img { display: block; width: 100%; max-width: 1140px; height: auto; background: #ffffff; border-radius: 6px; cursor: zoom-in; }
-.viewer img.big { width: 1140px; max-width: none; cursor: zoom-out; }
-.viewer .close {
-  position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: max(16px, env(safe-area-inset-right, 0px));
-  font: inherit; font-size: 14px; font-weight: 600; color: #ffffff; background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 6px; padding: 6px 14px; cursor: pointer;
-}
-.viewer .tip { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 18px); left: max(16px, env(safe-area-inset-left, 0px)); color: rgba(255, 255, 255, 0.75); font-size: 13px; }
-
 /* 후기 */
+.review-panel { background: var(--panel); border-radius: 16px; padding: 28px; }
+@media (max-width: 560px) { .review-panel { padding: 16px 12px; border-radius: 12px; } }
 .reviews { columns: 2 340px; column-gap: 20px; }
 .review {
   break-inside: avoid; margin: 0 0 20px;
@@ -281,7 +252,7 @@ section.block { padding-block: 72px 0; scroll-margin-top: 64px; }
   white-space: nowrap;
 }
 
-.blog { margin-top: 36px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
+.blog { margin-top: 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
 .blog h3 { margin: 0; padding: 20px 24px; font-size: 16px; font-weight: 600; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .blog h3 a { font-weight: 500; font-size: 14px; color: var(--brand); }
 .blog ul { margin: 0; padding: 0; list-style: none; }
@@ -315,7 +286,7 @@ section.block { padding-block: 72px 0; scroll-margin-top: 64px; }
 .line { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
 .line .k { font-size: 13px; opacity: 0.8; width: 56px; }
 .line .v { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; user-select: all; }
-.contact h2 + .hours, .ask-foot { color: var(--deep-muted); }
+.contact h2 + .hours { color: var(--deep-muted); }
 .copy {
   font: inherit; font-size: 13px; font-weight: 600;
   color: var(--deep-ink); background: transparent;
@@ -327,7 +298,6 @@ section.block { padding-block: 72px 0; scroll-margin-top: 64px; }
 .ask-title { margin: 0 0 12px; font-weight: 600; }
 .ask li { counter-increment: a; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; padding-block: 10px; border-top: 1px solid var(--deep-line); }
 .ask li::before { content: counter(a); font-weight: 700; color: var(--gold); }
-.ask-foot { margin: 14px 0 0; font-size: 14px; }
 
 footer .inner { padding-block: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-size: 13px; color: var(--muted); }
 footer a { color: var(--muted); }
@@ -339,7 +309,6 @@ footer a { color: var(--muted); }
   padding: 9px 16px; border-radius: 8px; font-size: 14px; z-index: 20;
 }
 </style>
-
 <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="i-plan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none"/><path d="M15.5 8.5 13.6 13.6 8.5 15.5 10.4 10.4z" fill="none"/><circle cx="12" cy="12" r="0.9" fill="currentColor" stroke="none"/></symbol>
@@ -363,9 +332,9 @@ footer a { color: var(--muted); }
     </a>
     <nav class="nav" aria-label="섹션 이동">
       <a href="#about">소개</a>
-      <a href="#courses">과정</a>
       <a href="#record">합격 기록</a>
       <a href="#reviews">후기</a>
+      <a href="#courses">과정</a>
       <a class="cta" href="#contact">상담 문의</a>
     </nav>
   </div>
@@ -376,20 +345,27 @@ footer a { color: var(--muted); }
     <div>
       <p class="eyebrow">최상위권 MBA · 대학원 · 편입 입시 컨설팅</p>
       <h1><span class="nb">이 길이 맞을까?</span> <span class="nb">합격할 수 있을까?</span> <span class="nb">고민되는 길.</span><br><span class="nb">자신을 잘 이해하면</span> <span class="nb"><em class="win">합격은 덤</em>입니다.</span></h1>
-      <p class="lead">자기를 잘 이해하면 합격 가능성이 수직 상승합니다.</p>
-      <p class="who"><strong>컨설턴트 제이쌤</strong><span>연세대학교 졸업</span><span>한국코치협회 전문코치</span><span>에니어그램 마인드 컨설턴트</span><span>교육 경력 17년 이상</span></p>
     </div>
     <img class="seal" src="logo.png" alt="엘리트코스 · Excellence &amp; Insight" width="341" height="358">
   </div>
 </div>
 
 <div class="inner">
-  <div class="stats">
-    <div class="stat"><b>94<small>%</small></b><span>전국 최상위권 MBA<br>26년 누적 합격률</span></div>
-    <div class="stat"><b>95<small>%</small></b><span>서울대 MBA<br>누적 합격률</span></div>
-    <div class="stat"><b>100<small>명+</small></b><span>서울대 누적 합격자<br>MBA · 대학원</span></div>
-    <div class="stat"><b>1,000<small>명+</small></b><span>지금까지 함께한<br>학생 수</span></div>
+  <div class="certs">
+    <figure class="cert">
+      <img src="cert0a.jpg" alt="서울대 MBA · 일반대학원, 연세대 MBA 합격증 4장" width="1154" height="376">
+    </figure>
+    <figure class="cert">
+      <img src="cert0b.jpg" alt="연세대 일반대학원, 고려대 MBA · 일반대학원 합격증 4장" width="1154" height="376">
+    </figure>
+    <figure class="cert">
+      <img src="cert1.jpg" alt="서울대 MBA · EMBA · 일반대학원 합격증 12장" width="1138" height="1128">
+    </figure>
+    <figure class="cert">
+      <img src="cert2.jpg" alt="서울대 · 연세대 · 고려대 · 카이스트 등 합격증 12장" width="1127" height="1142">
+    </figure>
   </div>
+  <p class="certs-note">실제 컨설팅 합격자분들의 합격증 중 "일부"입니다.</p>
 
   <section class="block" id="about" aria-labelledby="h-about">
     <div class="about">
@@ -397,11 +373,19 @@ footer a { color: var(--muted); }
         <img src="profile.jpg" alt="컨설턴트 제이쌤" width="720" height="1080" loading="lazy">
       </figure>
       <div class="text">
-        <h2 id="h-about">안녕하세요, 컨설턴트 제이쌤입니다</h2>
-        <p>연세대학교 졸업 후 교육 분야에서 17년 넘게 일했습니다. 10대부터 50대까지 1,000명 이상의 학생분들과 10,000시간 이상의 강의, 코칭, 컨설팅을 하며 각자에게 맞는 적성과 환경을 찾아가는 과정을 지켜봤습니다. MBA 진학을 돕는 동안에는 도전적인 대표님과 창업가분들이 성장하는 모습을 곁에서 볼 수 있었습니다.</p>
-        <p>입시는 누구에게나 쉽지 않습니다. 불안하고 막막하게 느껴지는 과정입니다. 그 과정을 함께하며 올바른 진로를 찾고, 원하는 학교를 전략적으로 준비해 드리는 일이 즐겁고 보람됩니다. 그래서 저는 이 교육을 천직으로 여기고 있습니다.</p>
-        <p>지원을 준비하시는 분들이 자신의 길을 잘 찾아가실 수 있도록, 쌓아 온 노하우와 합격 데이터를 바탕으로 최선의 합격 전략을 제시해 드리겠습니다.</p>
+        <h2 id="h-about">안녕하세요, 컨설턴트 제이쌤입니다.</h2>
+        <p>연세대학교 졸업 후 교육 분야 경력이 어느덧 17년이 넘었습니다. 그동안 10대부터 50대까지 1,000명 이상의 학생분들을 거치고, 10,000시간 이상의 강의, 코칭, 컨설팅을 하면서 지원자들이 각자에게 적합한 적성과 환경을 찾아가는 과정을 지켜볼 수 있었습니다. MBA 진학을 돕는 동안에는 도전적인 대표님들과 창업가분들이 성장하는 모습을 곁에서 볼 수 있었습니다.</p>
+        <p>입시는 나이를 불문하고 누구에게나 쉽지 않은 과정입니다. 저는 그 과정을 함께하면서 올바른 진로를 찾고, 원하는 학교를 전략적으로 준비해드리는 일이 정말 즐겁고 보람됩니다. 그래서 컨설팅이 있는 시간에는 늘 기대감을 가지고 임하며, 교육을 천직으로 여기고 있습니다.</p>
+        <p>앞으로도 지원을 준비하시는 분들이 “자신의 마음이 향하는 길”을 잘 찾아가실 수 있도록 쌓아 온 노하우와 합격 데이터를 바탕으로 최선의 합격 전략을 제시해드리겠습니다.</p>
+        <p class="who"><span>연세대학교 졸업</span><span>한국코치협회 전문코치</span><span>에니어그램 마인드 컨설턴트</span><span>교육 경력 17년</span></p>
       </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>94<small>%</small></b><span>전국 최상위권 MBA<br>26년 누적 합격률</span></div>
+      <div class="stat"><b>95<small>%</small></b><span>서울대 MBA<br>누적 합격률</span></div>
+      <div class="stat"><b>100<small>명+</small></b><span>서울대 누적 합격자<br>MBA · 대학원</span></div>
+      <div class="stat"><b>1,000<small>명+</small></b><span>지금까지 함께한<br>학생 수</span></div>
     </div>
 
     <div class="why">
@@ -412,7 +396,7 @@ footer a { color: var(--muted); }
         <li>
           <div class="top"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-data"/></svg></span><span class="n">01</span></div>
           <span class="t">입시 컨설턴트</span>
-          <span class="d"><mark class="hl">합격자 데이터와 실제 기출</mark>을 바탕으로 학교별 맞춤 전략을 세웁니다.</span>
+          <span class="d"><mark class="hl">약 200명의 최상위권 합격자 데이터와 실제 기출 문제</mark>를 바탕으로 지원자에 대한 정확한 진단을 하고, 학교별 맞춤 전략을 세웁니다.</span>
         </li>
         <li>
           <div class="top"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-coach"/></svg></span><span class="n">02</span></div>
@@ -422,66 +406,30 @@ footer a { color: var(--muted); }
         <li>
           <div class="top"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-ennea"/></svg></span><span class="n">03</span></div>
           <span class="t">에니어그램 마인드 컨설턴트</span>
-          <span class="d">에니어그램으로 성향과 강점을 이해하고, <mark class="hl">마인드셋 변화</mark>를 일으켜 면접장까지 가져갈 자신감을 함께 다룹니다.</span>
+          <span class="d">성격 이해 도구 &lt;에니어그램&gt;으로 강점을 파악하고, <mark class="hl">마인드셋 변화</mark>를 일으켜 면접뿐만 아니라 이후의 삶까지 변화시킬 자신감을 함께 만듭니다.</span>
         </li>
       </ul>
     </div>
   </section>
 
-  <section class="block" id="courses" aria-labelledby="h-courses">
-    <div class="head">
-      <h2 id="h-courses">컨설팅 과정</h2>
-      <p>모든 과정은 합격자 데이터를 바탕으로 1:1로 진행합니다.</p>
-    </div>
-    <div class="courses">
-      <article class="course">
-        <h3>MBA 컨설팅</h3>
-        <ol class="steps">
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>MBA 지원 전략 제안</span></li>
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>자기소개서 · 경력기술서 가이드</span></li>
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>구술시험 · 면접 준비</span></li>
-        </ol>
-      </article>
-      <article class="course">
-        <h3>일반 · 특수대학원 컨설팅</h3>
-        <ol class="steps">
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>대학원 지원 전략 제안</span></li>
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>자기소개서 · 연구계획서 가이드</span></li>
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>구술시험 · 면접 준비</span></li>
-        </ol>
-      </article>
-      <article class="course">
-        <h3>최상위권 대학 편입 컨설팅</h3>
-        <ol class="steps">
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>편입 지원 전략 제안</span></li>
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>자기소개서 · 학업계획서 가이드</span></li>
-          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>면접 준비</span></li>
-        </ol>
-      </article>
-    </div>
-    <div class="joiner" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="foundation">
-      <p class="f-k">모든 과정의 기반</p>
-      <p class="f-t">성향별 자기 이해로 자신감을 폭발시키는 <b>마인드 코칭</b></p>
-      <p class="f-d">한국코치협회 전문코치이자 <b>에니어그램</b> 기반 마인드 컨설턴트로서, 성향마다 다른 강점을 찾아내고 글 첨삭을 넘어 내적 성장을 이끄는 컨설팅을 합니다.</p>
-    </div>
-
-    <ul class="points" aria-label="엘리트코스 컨설팅의 특징">
-      <li>꼼꼼한 관리를 위해 전기 · 후기 각 20명 이내만 맡습니다.</li>
-      <li>아르바이트 첨삭이 아닙니다. 개인의 강점과 적성, 전공자 자문, 합격 데이터, 실제 기출에 기반해 컨설팅합니다.</li>
-      <li>작성된 글을 고치는 데서 그치지 않고, 초기 작성 단계부터 방향을 함께 잡습니다.</li>
-      <li>스펙상 어려운 상황이면 솔직하게 다른 진로 방향을 추천해 드립니다.</li>
-    </ul>
-  </section>
-
   <section class="block" id="record" aria-labelledby="h-record">
     <div class="head">
-      <h2 id="h-record">연도별 합격 기록</h2>
+      <h2 id="h-record"><span aria-hidden="true">🏆</span> 엘리트코스 합격 기록</h2>
     </div>
     <div class="ledger">
       <table>
         <thead><tr><th scope="col">연도</th><th scope="col">결과</th><th scope="col">참고</th></tr></thead>
         <tbody>
+          <tr>
+            <td class="y">2026</td>
+            <td><span class="big">서울대 Full-time MBA 역대 최다 합격</span><span class="sub">2026학년도 후기</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="y">2025</td>
+            <td><span class="big">서울대 Full-time MBA · 일반대학원 합격</span><span class="sub">최상위권 MBA 및 일반대학원 전체 합격자 배출</span></td>
+            <td><span class="big">2번째 · 3번째 도전 지원자 최종 합격</span><span class="sub">최상위권 대학원 재도전, 엘리트코스를 통해 합격</span></td>
+          </tr>
           <tr>
             <td class="y">2024</td>
             <td><span class="big">서울대 Full-time MBA 전원 합격 (100%)</span><span class="sub">진학 상담부터 면접까지 맡은 후기 지원자 기준</span></td>
@@ -500,29 +448,15 @@ footer a { color: var(--muted); }
         </tbody>
       </table>
     </div>
-    <div class="certs">
-      <figure class="cert">
-        <button type="button" data-full="cert1.jpg" data-alt="서울대 MBA · EMBA · 일반대학원 합격증 12장" id="cert-1">
-          <img src="cert1.jpg" alt="서울대 MBA · EMBA · 일반대학원 합격증 12장" width="1138" height="1128" loading="lazy">
-          <span class="zoom-hint">크게 보기</span>
-        </button>
-      </figure>
-      <figure class="cert">
-        <button type="button" data-full="cert2.jpg" data-alt="서울대 · 연세대 · 고려대 · 카이스트 등 합격증 12장" id="cert-2">
-          <img src="cert2.jpg" alt="서울대 · 연세대 · 고려대 · 카이스트 등 합격증 12장" width="1127" height="1142" loading="lazy">
-          <span class="zoom-hint">크게 보기</span>
-        </button>
-      </figure>
-    </div>
-    <p class="certs-note">실제 컨설팅 합격자분들의 합격증입니다. 개인정보는 가림 처리했습니다.</p>
   </section>
 
   <section class="block" id="reviews" aria-labelledby="h-reviews">
     <div class="head">
       <p class="kicker">합격하신 분들의 이야기</p>
-      <h2 id="h-reviews">나를 이해하고<br>자신감이 차오르는 컨설팅</h2>
+      <h2 id="h-reviews">나를 보는 관점이 180도 바뀌는 컨설팅 <span aria-hidden="true">🔥</span></h2>
       <p>컨설팅을 받으신 분들이 직접 남긴 후기 중 일부입니다.</p>
     </div>
+    <div class="review-panel">
     <div class="reviews">
       <figure class="review">
         <span class="avatar crest"><img src="school-snu.png" alt="서울대학교" width="240" height="248"></span>
@@ -579,6 +513,46 @@ footer a { color: var(--muted); }
         <li><a href="https://blog.naver.com/elitecourse2010/224138949509" target="_blank" rel="noopener"><span class="dt">2026.01</span><span class="tt"><em>연세대 대학원</em>연세대 일반대학원 최종합격후기 : 나 스스로를 더 잘 알게 된 합격 여정</span></a></li>
       </ul>
     </div>
+    </div>
+  </section>
+
+  <section class="block" id="courses" aria-labelledby="h-courses">
+    <div class="head">
+      <h2 id="h-courses">컨설팅 과정</h2>
+      <p>모든 과정은 합격자 데이터를 바탕으로 1:1로 진행합니다.</p>
+    </div>
+    <div class="courses">
+      <article class="course">
+        <h3>MBA 컨설팅</h3>
+        <ol class="steps">
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>MBA 지원 전략 제안, 스펙 진단</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>자기소개서 · 경력기술서 가이드</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>구술시험 · 면접 준비</span></li>
+        </ol>
+      </article>
+      <article class="course">
+        <h3>일반 · 특수대학원 컨설팅</h3>
+        <ol class="steps">
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>지원자 스펙 진단 및 전략 수립</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>연구계획서 가이드</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>구술시험 · 면접 준비</span></li>
+        </ol>
+      </article>
+      <article class="course">
+        <h3>최상위권 대학 편입 컨설팅</h3>
+        <ol class="steps">
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>편입 전략 수립</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>자기소개서 · 학업계획서 가이드</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>면접 준비</span></li>
+        </ol>
+      </article>
+    </div>
+    <div class="joiner" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="foundation">
+      <p class="f-k">모든 과정의 기반</p>
+      <p class="f-t">성향별 자기 이해로 자신감을 폭발시키는 <b>마인드 코칭</b></p>
+      <p class="f-d">한국코치협회 전문코치이자 <b>에니어그램</b> 기반 마인드 컨설턴트로서, 성향마다 다른 강점을 찾아내고 글 첨삭을 넘어 내적 성장을 이끄는 컨설팅을 합니다.</p>
+    </div>
   </section>
 </div>
 
@@ -600,7 +574,6 @@ footer a { color: var(--muted); }
         <li>현재 회사와 업무를 포함한 간단한 자기소개</li>
         <li>그 밖에 궁금한 점</li>
       </ol>
-      <p class="ask-foot">"프로필 보고 연락드렸습니다"라고 말씀해 주시면 됩니다.</p>
     </div>
   </div>
 </section>
@@ -613,12 +586,6 @@ footer a { color: var(--muted); }
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-
-<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="합격증 크게 보기" hidden>
-  <span class="tip">이미지를 누르면 더 크게 볼 수 있습니다</span>
-  <button class="close" type="button" id="viewer-close">닫기</button>
-  <img id="viewer-img" src="" alt="">
-</div>
 
 <script>
 (function () {
@@ -637,31 +604,6 @@ footer a { color: var(--muted); }
     s.removeAllRanges();
     s.addRange(r);
   }
-  var viewer = document.getElementById('viewer');
-  var vImg = document.getElementById('viewer-img');
-  var lastBtn = null;
-  function closeViewer() {
-    viewer.hidden = true;
-    vImg.classList.remove('big');
-    document.body.style.overflow = '';
-    if (lastBtn) lastBtn.focus();
-  }
-  document.querySelectorAll('.cert button').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      lastBtn = btn;
-      vImg.src = btn.getAttribute('data-full');
-      vImg.alt = btn.getAttribute('data-alt');
-      viewer.hidden = false;
-      viewer.scrollTop = 0;
-      document.body.style.overflow = 'hidden';
-      document.getElementById('viewer-close').focus();
-    });
-  });
-  vImg.addEventListener('click', function (e) { e.stopPropagation(); vImg.classList.toggle('big'); });
-  viewer.addEventListener('click', function (e) { if (e.target === viewer) closeViewer(); });
-  document.getElementById('viewer-close').addEventListener('click', closeViewer);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !viewer.hidden) closeViewer(); });
-
   document.querySelectorAll('.copy').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var value = btn.getAttribute('data-copy');
@@ -676,5 +618,6 @@ footer a { color: var(--muted); }
   });
 })();
 </script>
+
 
 </body></html>
