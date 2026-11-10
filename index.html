@@ -1,0 +1,680 @@
+<!doctype html><html><head><meta charset="utf-8"><title>엘리트코스 제이쌤</title><meta name="description" content="최상위권 MBA · 대학원 · 편입 입시 컨설팅, 엘리트코스 제이쌤"><link rel="icon" href="logo.png"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 합격 통지서처럼 정돈된 한 줄 흐름. 보라 첫 화면 → 숫자 → 소개 → 과정 → 연도별 기록 → 후기 → 보라 문의 */
+:root {
+  --bg: #f6f5f8;
+  --paper: #ffffff;
+  --ink: #1b1525;
+  --muted: #5e576b;
+  --line: #e2dee8;
+  --brand: #231431;
+  --brand-ink: #ffffff;
+  --deep: #231431;
+  --deep-ink: #ffffff;
+  --deep-muted: #c9bfd6;
+  --deep-line: #45355a;
+  --gold: #d9bd7a;
+  --brass: #8c6a1c;
+  --tint: #efebf4;
+  --hl: #f1dfab;  --font-display: "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #120e18; --paper: #1a1522; --ink: #ede9f3; --muted: #a8a0b6;
+    --line: #2f283a; --brand: #cdb8ec; --brand-ink: #120e18; --brass: #d9bd7a; --tint: #241d2f; --hl: #5c4a1c;
+    --deep: #1e1029; --deep-line: #3e2e52;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #120e18; --paper: #1a1522; --ink: #ede9f3; --muted: #a8a0b6;
+  --line: #2f283a; --brand: #cdb8ec; --brand-ink: #120e18; --brass: #d9bd7a; --tint: #241d2f; --hl: #5c4a1c;
+  --deep: #1e1029; --deep-line: #3e2e52;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
+
+.inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ── 상위 브랜드 줄 ── */
+.parent { background: var(--bg); border-bottom: 1px solid var(--line); }
+.parent .inner { padding-block: 5px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: 11px; line-height: 1.5; color: var(--muted); }
+.parent b { font-weight: 700; letter-spacing: 0.18em; }
+.parent span { letter-spacing: 0.06em; }
+
+/* ── 상단 바 ── */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.bar .inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand .mark { width: 34px; height: auto; display: block; }
+.brand .word { display: grid; line-height: 1.2; }
+.brand .word b { font-weight: 700; font-size: 17px; letter-spacing: 0.02em; }
+.brand .word small { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; color: var(--muted); }
+.nav { display: flex; align-items: center; gap: 20px; font-size: 14.5px; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+.nav .cta {
+  color: var(--brand-ink); background: var(--brand);
+  padding: 7px 14px; border-radius: 6px; font-weight: 600;
+}
+.nav .cta:hover { color: var(--brand-ink); }
+@media (max-width: 720px) { .nav a:not(.cta) { display: none; } }
+
+/* ── 첫 화면 ── */
+.hero { background: var(--deep); color: var(--deep-ink); }
+.hero .inner { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 64px; padding-block: 72px 64px; align-items: center; }
+@media (max-width: 820px) { .hero .inner { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 44px 40px; } }
+.eyebrow { margin: 0 0 16px; font-size: 15px; font-weight: 600; letter-spacing: 0.14em; color: var(--gold); }
+.hero h1 {
+  margin: 0;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(27px, 3.8vw, 40px); line-height: 1.38;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.hero h1 .win { font-style: normal; color: var(--gold); }
+.hero h1 .nb { white-space: nowrap; }
+.hero .lead { margin: 20px 0 0; font-size: 17px; color: var(--deep-muted); max-width: 34em; }
+.hero .who { margin: 32px 0 0; padding-top: 20px; border-top: 1px solid var(--deep-line); display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14.5px; }
+.hero .who strong { font-weight: 600; }
+.hero .who span { color: var(--deep-muted); }
+
+.seal { width: 260px; max-width: 100%; height: auto; display: block; justify-self: end; filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.35)); }
+@media (max-width: 820px) { .seal { width: 160px; justify-self: start; grid-row: 1; } }
+
+/* ── 숫자 ── */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+@media (max-width: 820px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stat { padding: 28px 20px 26px 0; display: grid; gap: 4px; align-content: start; }
+.stat + .stat { padding-left: 20px; border-left: 1px solid var(--line); }
+@media (max-width: 820px) {
+  .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+.stat b { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4vw, 40px); line-height: 1.15; color: var(--brand); font-variant-numeric: tabular-nums; }
+.stat b small { font-size: 0.55em; margin-left: 2px; }
+.stat span { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+/* ── 공통 섹션 ── */
+section.block { padding-block: 72px 0; scroll-margin-top: 64px; }
+@media (max-width: 820px) { section.block { padding-block: 56px 0; } }
+.head { display: grid; gap: 8px; margin-bottom: 28px; max-width: 40em; }
+.head h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 3vw, 30px); line-height: 1.35; text-wrap: balance; }
+.head p { margin: 0; color: var(--muted); }
+
+/* 소개: 사진 + 인사말 */
+.about { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 64px; align-items: center; }
+@media (max-width: 820px) { .about { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
+.about .text { display: grid; gap: 18px; max-width: 34em; font-size: 17px; line-height: 1.9; }
+.about .text h2 { margin: 0 0 8px; font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 3vw, 30px); line-height: 1.35; text-wrap: balance; }
+.about .text p { margin: 0; }
+.portrait { margin: 0; }
+.portrait img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 16px 36px rgba(35, 20, 49, 0.18); }
+@media (max-width: 820px) { .portrait { max-width: 340px; } }
+
+/* 왜 합격률이 높을까: 세 박스 → 괄호 → 최적 조합 */
+.why { margin-top: 80px; display: grid; justify-items: center; }
+@media (max-width: 820px) { .why { margin-top: 56px; } }
+.why h3 { margin: 0 0 28px; font-family: var(--font-display); font-weight: 800; font-size: clamp(22px, 2.8vw, 28px); line-height: 1.4; text-align: center; text-wrap: balance; }
+.roles { width: 100%; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 820px) { .roles { grid-template-columns: minmax(0, 1fr); } }
+.roles li { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 26px 24px 28px; display: grid; gap: 10px; align-content: start; }
+.roles .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.roles .n { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--brass); font-variant-numeric: tabular-nums; }
+.roles .t { font-family: var(--font-display); font-weight: 800; font-size: 19px; line-height: 1.4; }
+.roles .d { font-size: 15px; color: var(--muted); line-height: 1.75; }
+.roles mark.hl { color: var(--ink); }
+.brace { width: 100%; height: 46px; position: relative; }
+.brace::before { content: ""; position: absolute; top: 18px; left: 24px; right: 24px; height: 16px; border: 2px solid var(--brass); border-bottom: 0; border-radius: 12px 12px 0 0; }
+.brace::after { content: ""; position: absolute; top: 0; left: calc(50% - 1px); width: 2px; height: 20px; background: var(--brass); }
+.combo {
+  margin: 0; max-width: 100%; background: #231431; color: #ffffff;
+  border-top: 3px solid var(--gold); border-radius: 10px;
+  padding: 20px 36px; text-align: center; text-wrap: balance;
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(18px, 2.2vw, 22px); line-height: 1.5;
+}
+@media (max-width: 560px) { .combo { padding: 18px 22px; } }
+.combo b { color: var(--gold); font-weight: 800; }
+
+/* 과정 */
+.courses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 900px) { .courses { grid-template-columns: minmax(0, 1fr); } }
+.course { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 28px; display: grid; gap: 16px; align-content: start; }
+.course h3 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 21px; }
+.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 0; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 16px 44px minmax(0, 1fr); align-items: center; gap: 14px; padding-block: 14px; border-top: 1px solid var(--line); font-weight: 500; }
+.steps li::before { content: counter(s); font-weight: 700; color: var(--brass); font-variant-numeric: tabular-nums; }
+.ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--tint); color: var(--brand); }
+.ic svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.course .note { margin: 0; font-size: 13.5px; color: var(--muted); }
+.course-foot { margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14.5px; color: var(--muted); }
+
+/* 세 과정을 묶는 연결선과 기반 */
+.joiner { position: relative; height: 52px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.joiner span { justify-self: center; width: 2px; height: 26px; background: var(--brass); }
+.joiner::before { content: ""; position: absolute; top: 25px; left: calc((100% - 40px) / 6); right: calc((100% - 40px) / 6); height: 2px; background: var(--brass); }
+.joiner::after { content: ""; position: absolute; top: 25px; left: calc(50% - 1px); width: 2px; height: 27px; background: var(--brass); }
+@media (max-width: 900px) {
+  .joiner { height: 36px; }
+  .joiner span, .joiner::before { display: none; }
+  .joiner::after { top: 0; height: 36px; }
+}
+.foundation {
+  background: var(--deep); color: var(--deep-ink);
+  border-radius: 10px; border-top: 3px solid var(--gold);
+  padding: 32px max(20px, 4%);
+  display: grid; gap: 10px; justify-items: center; text-align: center;
+}
+.foundation p { margin: 0; }
+.foundation .f-k { font-size: 13px; font-weight: 600; letter-spacing: 0.14em; color: var(--gold); }
+.foundation .f-t { font-family: var(--font-display); font-weight: 800; font-size: clamp(21px, 2.8vw, 28px); line-height: 1.4; text-wrap: balance; }
+.foundation .f-t b { color: var(--gold); font-weight: 800; }
+.foundation .f-d { font-size: 15px; color: var(--deep-muted); max-width: 36em; }
+.foundation .f-d b { color: var(--deep-ink); font-weight: 600; }
+
+.points { margin: 32px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+@media (max-width: 720px) { .points { grid-template-columns: minmax(0, 1fr); } }
+.points li { padding: 14px 0 14px 24px; border-top: 1px solid var(--line); position: relative; }
+.points li::before { content: ""; position: absolute; left: 2px; top: 25px; width: 8px; height: 8px; border-radius: 50%; background: var(--brass); }
+
+/* 연도별 기록 */
+.ledger { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
+.ledger table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.ledger th, .ledger td { text-align: left; padding: 18px 22px; border-top: 1px solid var(--line); vertical-align: top; }
+.ledger thead th { border-top: 0; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; color: var(--muted); background: var(--tint); }
+.ledger td.y { font-family: var(--font-display); font-weight: 800; font-size: 20px; white-space: nowrap; color: var(--brand); font-variant-numeric: tabular-nums; }
+.ledger td .big { font-weight: 600; }
+.ledger td .sub { display: block; font-size: 14px; color: var(--muted); }
+
+/* 합격증 */
+.certs { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 720px) { .certs { grid-template-columns: minmax(0, 1fr); } }
+.cert { margin: 0; display: grid; gap: 12px; align-content: start; }
+.cert button {
+  display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: #ffffff; cursor: zoom-in; position: relative;
+}
+.cert button img { display: block; width: 100%; height: auto; transition: transform 0.3s ease; }
+.cert button:hover img { transform: scale(1.02); }
+@media (prefers-reduced-motion: reduce) { .cert button img { transition: none; } }
+.cert button .zoom-hint {
+  position: absolute; right: 12px; bottom: 12px;
+  background: var(--deep); color: var(--deep-ink); font-size: 12.5px; font-weight: 600;
+  padding: 4px 10px; border-radius: 999px;
+}
+.cert figcaption { display: grid; gap: 2px; }
+.cert figcaption b { font-weight: 600; }
+.cert figcaption span { font-size: 14px; color: var(--muted); }
+.certs-note { margin: 14px 0 0; font-size: 13.5px; color: var(--muted); }
+
+.viewer {
+  position: fixed; inset: 0; z-index: 30;
+  background: rgba(14, 8, 20, 0.92);
+  overflow: auto; overscroll-behavior: contain;
+  padding: calc(env(safe-area-inset-top, 0px) + 56px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 24px) max(16px, env(safe-area-inset-left, 0px));
+  display: grid; place-items: start center;
+}
+.viewer img { display: block; width: 100%; max-width: 1140px; height: auto; background: #ffffff; border-radius: 6px; cursor: zoom-in; }
+.viewer img.big { width: 1140px; max-width: none; cursor: zoom-out; }
+.viewer .close {
+  position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: max(16px, env(safe-area-inset-right, 0px));
+  font: inherit; font-size: 14px; font-weight: 600; color: #ffffff; background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 6px; padding: 6px 14px; cursor: pointer;
+}
+.viewer .tip { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 18px); left: max(16px, env(safe-area-inset-left, 0px)); color: rgba(255, 255, 255, 0.75); font-size: 13px; }
+
+/* 후기 */
+.reviews { columns: 2 340px; column-gap: 20px; }
+.review {
+  break-inside: avoid; margin: 0 0 20px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+  padding: 24px 24px 20px; display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px 16px;
+}
+.avatar {
+  grid-row: 1 / span 2;
+  width: 52px; height: 52px; border-radius: 50%; overflow: hidden;
+  display: grid; place-items: center;
+  background: var(--deep); color: #ffffff;
+  font-family: var(--font-body); font-weight: 700; font-size: 18px; line-height: 1; letter-spacing: -0.01em;
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--line);
+}
+.avatar.crest { background: #ffffff; padding: 7px; }
+.avatar.crest img { object-fit: contain; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.review blockquote { grid-column: 2; margin: 0; font-size: 15.5px; }
+.review mark.hl, .roles mark.hl { background: linear-gradient(transparent 56%, var(--hl) 56%); color: inherit; font-weight: 600; padding: 0 1px; }
+.head .kicker { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--brass); }
+.review figcaption { grid-column: 2; grid-row: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 14px; color: var(--muted); padding-top: 12px; }
+.review blockquote { grid-row: 2; }
+.pass {
+  font-size: 12.5px; font-weight: 700; color: var(--brand);
+  border: 1.5px solid var(--brand); border-radius: 4px; padding: 1px 8px;
+  white-space: nowrap;
+}
+
+.blog { margin-top: 36px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
+.blog h3 { margin: 0; padding: 20px 24px; font-size: 16px; font-weight: 600; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.blog h3 a { font-weight: 500; font-size: 14px; color: var(--brand); }
+.blog ul { margin: 0; padding: 0; list-style: none; }
+.blog li + li { border-top: 1px solid var(--line); }
+.blog li a { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 16px; padding: 14px 24px; text-decoration: none; }
+.blog li a:hover .tt { text-decoration: underline; text-underline-offset: 3px; }
+.blog .dt { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.blog .tt { font-size: 15px; }
+.blog .tt em { font-style: normal; font-weight: 600; color: var(--brand); margin-right: 6px; }
+@media (max-width: 560px) { .blog li a { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+
+/* 문의 */
+.contact { margin-top: 72px; background: var(--deep); color: var(--deep-ink); }
+.contact .inner { padding-block: 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+@media (max-width: 820px) { .contact .inner { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 44px; } }
+.contact h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 3vw, 30px); line-height: 1.35; }
+.contact .hours { margin: 12px 0 0; font-size: 14.5px; }
+.lines { margin: 28px 0 0; display: grid; gap: 14px; justify-items: start; }
+.chat {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold); color: #231431;
+  font-size: 17px; font-weight: 700; text-decoration: none;
+  padding: 14px 22px; border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease;
+}
+.chat:hover { transform: translateY(-1px); }
+.chat:focus-visible { outline: 2px solid var(--deep-ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .chat { transition: none; } }
+.line .v.url { font-size: 15px; font-weight: 500; color: var(--deep-muted); }
+.line { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
+.line .k { font-size: 13px; opacity: 0.8; width: 56px; }
+.line .v { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; user-select: all; }
+.contact h2 + .hours, .ask-foot { color: var(--deep-muted); }
+.copy {
+  font: inherit; font-size: 13px; font-weight: 600;
+  color: var(--deep-ink); background: transparent;
+  border: 1px solid currentColor; border-radius: 6px; padding: 3px 10px; cursor: pointer;
+  opacity: 0.9;
+}
+.copy:hover { opacity: 1; }
+.ask { margin: 0; padding: 0; list-style: none; display: grid; gap: 0; counter-reset: a; }
+.ask-title { margin: 0 0 12px; font-weight: 600; }
+.ask li { counter-increment: a; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; padding-block: 10px; border-top: 1px solid var(--deep-line); }
+.ask li::before { content: counter(a); font-weight: 700; color: var(--gold); }
+.ask-foot { margin: 14px 0 0; font-size: 14px; }
+
+footer .inner { padding-block: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-size: 13px; color: var(--muted); }
+footer a { color: var(--muted); }
+
+.toast {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  background: var(--ink); color: var(--bg);
+  padding: 9px 16px; border-radius: 8px; font-size: 14px; z-index: 20;
+}
+</style>
+
+<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-plan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none"/><path d="M15.5 8.5 13.6 13.6 8.5 15.5 10.4 10.4z" fill="none"/><circle cx="12" cy="12" r="0.9" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M13 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4" fill="none"/><path d="M13 3l5 5h-5z" fill="none"/><path d="M8.5 12h6M8.5 15.5h3" fill="none"/><path d="M19.4 13.6a1.4 1.4 0 0 1 2 2L16 21l-2.6.6.6-2.6z" fill="none"/></symbol>
+    <symbol id="i-talk" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h7A2.5 2.5 0 0 1 16 5.5v4a2.5 2.5 0 0 1-2.5 2.5H9l-3.5 3v-3H6.5A2.5 2.5 0 0 1 4 9.5z" fill="none"/><path d="M16 8h1.5A2.5 2.5 0 0 1 20 10.5v4a2.5 2.5 0 0 1-2.5 2.5h-.5v3L13.5 17H11a2.5 2.5 0 0 1-2-1" fill="none"/></symbol>
+    <symbol id="i-data" viewBox="0 0 24 24"><path d="M4 4v16h16" fill="none"/><path d="M8.5 16v-3.5M12.5 16V9.5M16.5 16V6.5" fill="none"/></symbol>
+    <symbol id="i-coach" viewBox="0 0 24 24"><path d="M5 4.5h14A1.5 1.5 0 0 1 20.5 6v9a1.5 1.5 0 0 1-1.5 1.5h-7L7.5 20v-3.5H5A1.5 1.5 0 0 1 3.5 15V6A1.5 1.5 0 0 1 5 4.5z" fill="none"/><path d="M10 8.6a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.3v.3" fill="none"/><circle cx="12" cy="14" r="0.9" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-ennea" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none"/><path d="M12 3 19.79 16.5H4.21z" fill="none" stroke-width="1.2"/><path d="M17.79 5.11 15.08 20.46 20.86 10.44 6.21 5.11 8.92 20.46 3.14 10.44z" fill="none" stroke-width="1.2"/></symbol>
+  </defs>
+</svg>
+
+<div class="parent">
+  <div class="inner"><b>MAHA</b><span>Miracle Always Happens to Anyone</span></div>
+</div>
+
+<header class="bar">
+  <div class="inner">
+    <a class="brand" href="#top" aria-label="엘리트코스 처음으로">
+      <img class="mark" src="logo.png" alt="" width="34" height="36">
+      <span class="word"><b>엘리트코스</b><small>EXCELLENCE &amp; INSIGHT</small></span>
+    </a>
+    <nav class="nav" aria-label="섹션 이동">
+      <a href="#about">소개</a>
+      <a href="#courses">과정</a>
+      <a href="#record">합격 기록</a>
+      <a href="#reviews">후기</a>
+      <a class="cta" href="#contact">상담 문의</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="inner">
+    <div>
+      <p class="eyebrow">최상위권 MBA · 대학원 · 편입 입시 컨설팅</p>
+      <h1><span class="nb">이 길이 맞을까?</span> <span class="nb">합격할 수 있을까?</span> <span class="nb">고민되는 길.</span><br><span class="nb">자신을 잘 이해하면</span> <span class="nb"><em class="win">합격은 덤</em>입니다.</span></h1>
+      <p class="lead">자기를 잘 이해하면 합격 가능성이 수직 상승합니다.</p>
+      <p class="who"><strong>컨설턴트 제이쌤</strong><span>연세대학교 졸업</span><span>한국코치협회 전문코치</span><span>에니어그램 마인드 컨설턴트</span><span>교육 경력 17년 이상</span></p>
+    </div>
+    <img class="seal" src="logo.png" alt="엘리트코스 · Excellence &amp; Insight" width="341" height="358">
+  </div>
+</div>
+
+<div class="inner">
+  <div class="stats">
+    <div class="stat"><b>94<small>%</small></b><span>전국 최상위권 MBA<br>26년 누적 합격률</span></div>
+    <div class="stat"><b>95<small>%</small></b><span>서울대 MBA<br>누적 합격률</span></div>
+    <div class="stat"><b>100<small>명+</small></b><span>서울대 누적 합격자<br>MBA · 대학원</span></div>
+    <div class="stat"><b>1,000<small>명+</small></b><span>지금까지 함께한<br>학생 수</span></div>
+  </div>
+
+  <section class="block" id="about" aria-labelledby="h-about">
+    <div class="about">
+      <figure class="portrait">
+        <img src="profile.jpg" alt="컨설턴트 제이쌤" width="720" height="1080" loading="lazy">
+      </figure>
+      <div class="text">
+        <h2 id="h-about">안녕하세요, 컨설턴트 제이쌤입니다</h2>
+        <p>연세대학교 졸업 후 교육 분야에서 17년 넘게 일했습니다. 10대부터 50대까지 1,000명 이상의 학생분들과 10,000시간 이상의 강의, 코칭, 컨설팅을 하며 각자에게 맞는 적성과 환경을 찾아가는 과정을 지켜봤습니다. MBA 진학을 돕는 동안에는 도전적인 대표님과 창업가분들이 성장하는 모습을 곁에서 볼 수 있었습니다.</p>
+        <p>입시는 누구에게나 쉽지 않습니다. 불안하고 막막하게 느껴지는 과정입니다. 그 과정을 함께하며 올바른 진로를 찾고, 원하는 학교를 전략적으로 준비해 드리는 일이 즐겁고 보람됩니다. 그래서 저는 이 교육을 천직으로 여기고 있습니다.</p>
+        <p>지원을 준비하시는 분들이 자신의 길을 잘 찾아가실 수 있도록, 쌓아 온 노하우와 합격 데이터를 바탕으로 최선의 합격 전략을 제시해 드리겠습니다.</p>
+      </div>
+    </div>
+
+    <div class="why">
+      <h3 id="h-why">왜 엘리트코스의 합격률은 높을까?</h3>
+      <p class="combo">3가지 전문성이 <b>최적으로 조합</b>되어 지원자의 가능성을 극대로 끌어내기 때문입니다</p>
+      <div class="brace" aria-hidden="true"></div>
+      <ul class="roles" aria-labelledby="h-why">
+        <li>
+          <div class="top"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-data"/></svg></span><span class="n">01</span></div>
+          <span class="t">입시 컨설턴트</span>
+          <span class="d"><mark class="hl">합격자 데이터와 실제 기출</mark>을 바탕으로 학교별 맞춤 전략을 세웁니다.</span>
+        </li>
+        <li>
+          <div class="top"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-coach"/></svg></span><span class="n">02</span></div>
+          <span class="t">한국코치협회 전문코치</span>
+          <span class="d"><mark class="hl">깊이 있는 질문</mark>으로 지원자 스스로도 몰랐던 강점을 발굴하여 <mark class="hl">지원자 최고의 모습</mark>을 만들어갑니다.</span>
+        </li>
+        <li>
+          <div class="top"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-ennea"/></svg></span><span class="n">03</span></div>
+          <span class="t">에니어그램 마인드 컨설턴트</span>
+          <span class="d">에니어그램으로 성향과 강점을 이해하고, <mark class="hl">마인드셋 변화</mark>를 일으켜 면접장까지 가져갈 자신감을 함께 다룹니다.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="courses" aria-labelledby="h-courses">
+    <div class="head">
+      <h2 id="h-courses">컨설팅 과정</h2>
+      <p>모든 과정은 합격자 데이터를 바탕으로 1:1로 진행합니다.</p>
+    </div>
+    <div class="courses">
+      <article class="course">
+        <h3>MBA 컨설팅</h3>
+        <ol class="steps">
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>MBA 지원 전략 제안</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>자기소개서 · 경력기술서 가이드</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>구술시험 · 면접 준비</span></li>
+        </ol>
+      </article>
+      <article class="course">
+        <h3>일반 · 특수대학원 컨설팅</h3>
+        <ol class="steps">
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>대학원 지원 전략 제안</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>자기소개서 · 연구계획서 가이드</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>구술시험 · 면접 준비</span></li>
+        </ol>
+      </article>
+      <article class="course">
+        <h3>최상위권 대학 편입 컨설팅</h3>
+        <ol class="steps">
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-plan"/></svg></span><span>편입 지원 전략 제안</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span>자기소개서 · 학업계획서 가이드</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-talk"/></svg></span><span>면접 준비</span></li>
+        </ol>
+      </article>
+    </div>
+    <div class="joiner" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="foundation">
+      <p class="f-k">모든 과정의 기반</p>
+      <p class="f-t">성향별 자기 이해로 자신감을 폭발시키는 <b>마인드 코칭</b></p>
+      <p class="f-d">한국코치협회 전문코치이자 <b>에니어그램</b> 기반 마인드 컨설턴트로서, 성향마다 다른 강점을 찾아내고 글 첨삭을 넘어 내적 성장을 이끄는 컨설팅을 합니다.</p>
+    </div>
+
+    <ul class="points" aria-label="엘리트코스 컨설팅의 특징">
+      <li>꼼꼼한 관리를 위해 전기 · 후기 각 20명 이내만 맡습니다.</li>
+      <li>아르바이트 첨삭이 아닙니다. 개인의 강점과 적성, 전공자 자문, 합격 데이터, 실제 기출에 기반해 컨설팅합니다.</li>
+      <li>작성된 글을 고치는 데서 그치지 않고, 초기 작성 단계부터 방향을 함께 잡습니다.</li>
+      <li>스펙상 어려운 상황이면 솔직하게 다른 진로 방향을 추천해 드립니다.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="record" aria-labelledby="h-record">
+    <div class="head">
+      <h2 id="h-record">연도별 합격 기록</h2>
+    </div>
+    <div class="ledger">
+      <table>
+        <thead><tr><th scope="col">연도</th><th scope="col">결과</th><th scope="col">참고</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="y">2024</td>
+            <td><span class="big">서울대 Full-time MBA 전원 합격 (100%)</span><span class="sub">진학 상담부터 면접까지 맡은 후기 지원자 기준</span></td>
+            <td><span class="big">최상위권 MBA · 대학원 서류 합격률 100%</span><span class="sub">서울대 경쟁률 약 4:1, 역대 가장 높았던 해</span></td>
+          </tr>
+          <tr>
+            <td class="y">2023</td>
+            <td><span class="big">최상위권 MBA · 대학원 전체 합격률 90%</span><span class="sub">최상위권 MBA 1차 서류 합격률 100%</span></td>
+            <td><span class="big">연세대 · 고려대 Part-time MBA</span><span class="sub">경쟁률 최고 7:1</span></td>
+          </tr>
+          <tr>
+            <td class="y">2022</td>
+            <td><span class="big">서울대 MBA · 경영대학원 전원 합격</span><span class="sub">최상위권 MBA · 대학원 전체 합격률 92%</span></td>
+            <td><span class="big">총 합격자 41명</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="certs">
+      <figure class="cert">
+        <button type="button" data-full="cert1.jpg" data-alt="서울대 MBA · EMBA · 일반대학원 합격증 12장" id="cert-1">
+          <img src="cert1.jpg" alt="서울대 MBA · EMBA · 일반대학원 합격증 12장" width="1138" height="1128" loading="lazy">
+          <span class="zoom-hint">크게 보기</span>
+        </button>
+      </figure>
+      <figure class="cert">
+        <button type="button" data-full="cert2.jpg" data-alt="서울대 · 연세대 · 고려대 · 카이스트 등 합격증 12장" id="cert-2">
+          <img src="cert2.jpg" alt="서울대 · 연세대 · 고려대 · 카이스트 등 합격증 12장" width="1127" height="1142" loading="lazy">
+          <span class="zoom-hint">크게 보기</span>
+        </button>
+      </figure>
+    </div>
+    <p class="certs-note">실제 컨설팅 합격자분들의 합격증입니다. 개인정보는 가림 처리했습니다.</p>
+  </section>
+
+  <section class="block" id="reviews" aria-labelledby="h-reviews">
+    <div class="head">
+      <p class="kicker">합격하신 분들의 이야기</p>
+      <h2 id="h-reviews">나를 이해하고<br>자신감이 차오르는 컨설팅</h2>
+      <p>컨설팅을 받으신 분들이 직접 남긴 후기 중 일부입니다.</p>
+    </div>
+    <div class="reviews">
+      <figure class="review">
+        <span class="avatar crest"><img src="school-snu.png" alt="서울대학교" width="240" height="248"></span>
+        <blockquote>가장 큰 장점은 컨설팅을 진행하면서 <mark class="hl">나에 대한 자신감을 얻을 수 있었다</mark>는 점입니다. 너무 오래되었거나 <mark class="hl">미처 내 강점이라고 생각하지 못했던 부분들</mark>을 객관적인 입장에서 이야기해 주시면서, <mark class="hl">그게 왜 강점인지 부각해</mark> 주셨습니다. 내 강점을 제대로 어필하지 못하시는 분들께 꼭 추천드립니다.</blockquote>
+        <figcaption><span class="pass">서울대 MBA 합격</span>신**님</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="avatar crest"><img src="school-kaist.png" alt="KAIST" width="240" height="240"></span>
+        <blockquote><mark class="hl">대화를 통해 마음을 열고 깊은 이야기까지 끌어내</mark>, 진정성 있는 스토리텔링이 담긴 결과물이 나온다는 점이 인상적이었습니다. 특히 자신감을 많이 북돋아 주셔서 <mark class="hl">내면으로부터 자신감을 장착한 채 면접에 임할 수 있었던 점</mark>이 가장 큰 성공 요인이었던 것 같습니다. 셀프 어필에 서툰 분께 꼭 추천드리고 싶습니다.</blockquote>
+        <figcaption><span class="pass">카이스트 MBA 합격</span>박**님</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="avatar crest"><img src="school-snu.png" alt="서울대학교" width="240" height="248"></span>
+        <blockquote>자소서를 써 본 경험이 없어 걱정이 컸지만, <mark class="hl">제 기억을 이끌어 내 경험의 의미를 찾고</mark> 그것을 대학원 공부와 연결할 수 있었습니다. 불안하고 자신감이 없던 저를 격려해 주셨고, <mark class="hl">제 생각과 잠재력을 표현할 수 있도록 자신감을 불어넣어</mark> 주셨습니다.</blockquote>
+        <figcaption><span class="pass">서울대 일반대학원 석사 합격</span>이**님</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="avatar crest"><img src="school-snu.png" alt="서울대학교" width="240" height="248"></span>
+        <blockquote>실제 면접 상황을 최대한 완벽하게 재연해 주셔서 실전의 압박과 긴장감을 미리 체험하고 갈 수 있었습니다. 마무리 즈음 전해 주신 조언과 격려가 긴장을 바로 가라앉히고, <mark class="hl">면접 자신감을 장착하는 데</mark> 실질적인 도움이 됐습니다.</blockquote>
+        <figcaption><span class="pass">서울대 일반대학원 석사 합격</span>유**님</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="avatar crest"><img src="school-yonsei.png" alt="연세대학교" width="240" height="240"></span>
+        <blockquote>학부가 좋지 않아 처음에 정말 막막했습니다. 쌤이 <mark class="hl">제 스토리를 잘 이끌어 내</mark> 주셨고, 부족한 점은 보완을 요청해 주셔서 그 부분에 더 집중했습니다. 진정성을 가지고 이끌어 주시는 모습을 보고 '원지쌤이 시키는 대로만 하면 나도 합격할 수 있겠다'는 마음으로 임했습니다.</blockquote>
+        <figcaption><span class="pass">연세대 MBA 합격</span>**철님</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="avatar crest"><img src="school-snu.png" alt="서울대학교" width="240" height="248"></span>
+        <blockquote>제가 지원했던 서울대는 영어 지문을 보고 질문에 답하는 형식이라고만 알고 있었는데, 자세한 상담으로 정확한 면접 방법을 알고 가서 <mark class="hl">당황하지 않고 면접을 볼 수 있었습니다</mark>. 여러 상황을 상정해 대처 방법도 꼼꼼하게 체크해 주셨습니다.</blockquote>
+        <figcaption><span class="pass">서울대 MBA 합격</span>정**님</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="avatar crest"><img src="school-korea.png" alt="고려대학교" width="240" height="331"></span>
+        <blockquote>경력이 많아 입사 평가자로서 지원자들을 본 경험이 많은데, 컨설팅을 받아 보고 역시 보는 눈이 다르시다고 느꼈습니다. 굉장히 예리하셔서 놀랐고, <mark class="hl">은연중에 걱정하던 부분까지</mark> 꼼꼼하게 준비할 수 있었습니다.</blockquote>
+        <figcaption><span class="pass">고려대 특수대학원 합격</span>*정*님</figcaption>
+      </figure>
+      <figure class="review">
+        <span class="avatar crest"><img src="school-kaist.png" alt="KAIST" width="240" height="240"></span>
+        <blockquote>MBA를 처음 준비하는 경우라 어디서부터 어떻게 해야 할지 모든 것이 막연했습니다. 그래서 그 길을 알고 계신 분과 동행했습니다. 노력은 올바른 방향으로 하는 것이 중요하다고 생각합니다.</blockquote>
+        <figcaption><span class="pass">카이스트 MBA 합격</span>이**님</figcaption>
+      </figure>
+    </div>
+
+    <div class="blog">
+      <h3>블로그 합격후기 <a href="https://blog.naver.com/elitecourse2010" target="_blank" rel="noopener">블로그에서 전체 보기 →</a></h3>
+      <ul>
+        <li><a href="https://blog.naver.com/elitecourse2010/224440422307" target="_blank" rel="noopener"><span class="dt">2026.10</span><span class="tt"><em>서울대 MBA</em>2026학년도 서울대 풀타임 MBA 합격후기 : 정확한 컨설팅으로 한 번에 합격!</span></a></li>
+        <li><a href="https://blog.naver.com/elitecourse2010/224380319827" target="_blank" rel="noopener"><span class="dt">2026.08</span><span class="tt"><em>고려대 대학원</em>고려대 일반대학원 경영학과 최종합격후기 : 좋은 스펙보다 나를 일관되게 보여주는 것의 중요성</span></a></li>
+        <li><a href="https://blog.naver.com/elitecourse2010/224360678057" target="_blank" rel="noopener"><span class="dt">2026.07</span><span class="tt"><em>연세대 · 고려대 MBA</em>2026학년도 전기 연세대 MBA / 고려대 MBA 최종합격후기</span></a></li>
+        <li><a href="https://blog.naver.com/elitecourse2010/224354481795" target="_blank" rel="noopener"><span class="dt">2026.07</span><span class="tt"><em>서울대 대학원</em>후기 서울대 일반대학원 경영학과 최종합격 후기 : 어떤 결과가 나와도 의미 있는 과정이었던 도전</span></a></li>
+        <li><a href="https://blog.naver.com/elitecourse2010/224324791833" target="_blank" rel="noopener"><span class="dt">2026.06</span><span class="tt"><em>서울대 MBA</em>서울대 풀타임 MBA 최종합격후기 : 인생의 터닝포인트를 만들었던 합격 과정</span></a></li>
+        <li><a href="https://blog.naver.com/elitecourse2010/224186185407" target="_blank" rel="noopener"><span class="dt">2026.02</span><span class="tt"><em>서울대 EMBA</em>2026학년도 서울대 EMBA 최종합격후기</span></a></li>
+        <li><a href="https://blog.naver.com/elitecourse2010/224145102609" target="_blank" rel="noopener"><span class="dt">2026.01</span><span class="tt"><em>고려대 KMBA</em>고려대 KMBA 최종합격후기 : 당연히 여겼던 성과와 경험도 가치 있는 강점으로</span></a></li>
+        <li><a href="https://blog.naver.com/elitecourse2010/224138949509" target="_blank" rel="noopener"><span class="dt">2026.01</span><span class="tt"><em>연세대 대학원</em>연세대 일반대학원 최종합격후기 : 나 스스로를 더 잘 알게 된 합격 여정</span></a></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<section class="contact" id="contact" aria-labelledby="h-contact">
+  <div class="inner">
+    <div>
+      <h2 id="h-contact">상담 문의</h2>
+      <p class="hours">토요일·공휴일, 저녁 8시 이후, 미팅 중에는 답변이 늦을 수 있습니다. 확인 후 회신드립니다.</p>
+      <div class="lines">
+        <a class="chat" href="https://open.kakao.com/me/elitecourse12" target="_blank" rel="noopener">카카오톡 오픈채팅으로 상담하기 <span aria-hidden="true">→</span></a>
+        <div class="line"><span class="v url" id="v-chat">open.kakao.com/me/elitecourse12</span><button class="copy" type="button" data-copy="https://open.kakao.com/me/elitecourse12" id="copy-chat">링크 복사</button></div>
+      </div>
+    </div>
+    <div>
+      <p class="ask-title">문의하실 때 함께 보내 주세요</p>
+      <ol class="ask">
+        <li>지원자 성함과 연락처</li>
+        <li>희망 지원 학교(과정 포함)와 간단한 지원 이유</li>
+        <li>현재 회사와 업무를 포함한 간단한 자기소개</li>
+        <li>그 밖에 궁금한 점</li>
+      </ol>
+      <p class="ask-foot">"프로필 보고 연락드렸습니다"라고 말씀해 주시면 됩니다.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span>© 엘리트코스 · CWJ Consulting · 제이쌤</span>
+    <a href="https://blog.naver.com/elitecourse2010" target="_blank" rel="noopener">네이버 블로그</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="합격증 크게 보기" hidden>
+  <span class="tip">이미지를 누르면 더 크게 볼 수 있습니다</span>
+  <button class="close" type="button" id="viewer-close">닫기</button>
+  <img id="viewer-img" src="" alt="">
+</div>
+
+<script>
+(function () {
+  var toast = document.getElementById('toast');
+  var timer;
+  function show(msg) {
+    toast.textContent = msg;
+    toast.hidden = false;
+    clearTimeout(timer);
+    timer = setTimeout(function () { toast.hidden = true; }, 1800);
+  }
+  function selectText(el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+  }
+  var viewer = document.getElementById('viewer');
+  var vImg = document.getElementById('viewer-img');
+  var lastBtn = null;
+  function closeViewer() {
+    viewer.hidden = true;
+    vImg.classList.remove('big');
+    document.body.style.overflow = '';
+    if (lastBtn) lastBtn.focus();
+  }
+  document.querySelectorAll('.cert button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      lastBtn = btn;
+      vImg.src = btn.getAttribute('data-full');
+      vImg.alt = btn.getAttribute('data-alt');
+      viewer.hidden = false;
+      viewer.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+      document.getElementById('viewer-close').focus();
+    });
+  });
+  vImg.addEventListener('click', function (e) { e.stopPropagation(); vImg.classList.toggle('big'); });
+  viewer.addEventListener('click', function (e) { if (e.target === viewer) closeViewer(); });
+  document.getElementById('viewer-close').addEventListener('click', closeViewer);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !viewer.hidden) closeViewer(); });
+
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-copy');
+      var target = btn.previousElementSibling;
+      var fallback = function () { selectText(target); show('선택했습니다. 길게 눌러 복사하세요'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(function () { show(value + ' 복사됨'); }, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+})();
+</script>
+
+</body></html>
